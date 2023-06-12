@@ -1,18 +1,19 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
-public class TelaFinalView {
-    private JFrame frame;
-    private JLabel mensagemFinal, dados;
-    private JButton alterar, excluir;
+public class TelaFinalView implements ActionListener {
+    private static JFrame frame;
+    private static JLabel mensagemFinal, dados;
+    private static JButton alterar;
+    private static JButton excluir;
 
     public TelaFinalView() {
         // Configuração da tela
         frame = new JFrame("Cadastro finalizado");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.setSize(800, 600);
 
         // Criação dos componentes
@@ -22,12 +23,12 @@ public class TelaFinalView {
         alterar = new JButton("Alterar");
         excluir = new JButton("Excluir");
 
-                //definição de tamanhos
-                frame.setSize(800, 600);
-                mensagemFinal.setBounds(30, 30, 200, 30);
-                dados.setBounds(30, 50, 400, 200);
-                alterar.setBounds(260, 300, 100, 30);
-                excluir.setBounds(460, 300, 100, 30);
+        // definição de tamanhos
+        frame.setSize(800, 600);
+        mensagemFinal.setBounds(30, 30, 200, 30);
+        dados.setBounds(30, 50, 400, 200);
+        alterar.setBounds(260, 300, 100, 30);
+        excluir.setBounds(460, 300, 100, 30);
 
         // Configuração do layout
         frame.setLayout(null);
@@ -49,4 +50,30 @@ public class TelaFinalView {
             }
         });
     }
+
+    // Clicar no botão Alterar
+    public static void mainA(String args[]) {
+        TelaFinalView a = new TelaFinalView();
+        alterar.addActionListener(a);
+        // redirecionar para a tela "itinerario"
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    // Clicar no botão Excluir
+    public static void mainB(String args[]) {
+        TelaFinalView e = new TelaFinalView();
+        excluir.addActionListener(e);
+        // redirecionar para a tela "telaInicial"
+    }
+    /*
+     * public void actionPerformed(ActionEvent e){
+     * 
+     * }
+     */
+
+    // não é possível utilizar o acrionPerformed mais de uma vez na classe
+    // encontrar uma forma de diferenciar as açoes dos botões de alterrar e excluir
 }

@@ -3,7 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AviaoView{
+public class AviaoView implements ActionListener{
     private static JFrame f;
     private static JLabel nome, telefone, laAviao;
     private static JTextField tfNome, tfTelefone;
@@ -11,7 +11,7 @@ public class AviaoView{
     private static JButton continuar;
 
     //Mostrar escrito
-    public static void main(String[] args) {
+    public AviaoView() {
         f = new JFrame("Avião");
         nome = new JLabel("Digite seu nome: ");
         telefone = new JLabel("Digite seu telefone: ");
@@ -22,7 +22,7 @@ public class AviaoView{
         String classes[] = {"Econômica", "Executiva", "Primeira Classe"};
         liAviao = new JList<String>(classes);
         continuar = new JButton("Continuar");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //definindo tamanhos (tem que conferir se estao certos)
         f.setSize(800, 600);
@@ -36,6 +36,7 @@ public class AviaoView{
 
         //adicionando ao Frame
         f.setLayout(null);
+        f.setLocationRelativeTo(null);
         f.add(nome);
         f.add(telefone);
         f.add(laAviao);
@@ -44,6 +45,14 @@ public class AviaoView{
         f.add(liAviao);
         f.add(continuar);
         f.setVisible(true);
+        continuar.addActionListener(this);
     }
 
+    //Clicar no botão Continuar   
+    public void actionPerformed(ActionEvent e) {
+        // Redirecionamento para a tela "Itinerario"
+        SwingUtilities.invokeLater(() -> {
+            new ItinerarioView();
+        });
+    }
 }

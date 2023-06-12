@@ -1,11 +1,10 @@
 package view;
 
 import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.event.*;
 
-public class ItinerarioView {
+public class ItinerarioView implements ActionListener{
 
     private static JFrame f;
     private static JLabel origemLabel;
@@ -15,7 +14,7 @@ public class ItinerarioView {
     private static JButton continuar;
     private static JScrollPane so, sd;
 
-    public static void main(String[] args) {
+    public ItinerarioView() {
         // Crie um vetor com as possibilidades de classes
         String Cidades[] = {"Aracaju - SE", "Belém - PA", "Belo Horizonte - MG", "Boa Vista - RR", "Brasília - DF", "Campo Grande - MS", "Cuiabá - MT", "Curitiba - PR", "Florianópolis - SC", "Fortaleza - CE", "Goiânia - GO", "João Pessoa - PB", "Macapá - AP", "Maceió - AL", "Manaus - AM", "Natal - RN", "Palmas - TO", "Porto Alegre - RS", "Porto Velho - RO", "Recife - PE", "Rio Branco - AC", "Rio de Janeiro - RJ", "Salvador - BA", "São Luís - MA", "São Paulo - SP", "Teresina - PI", "Vitória - ES"};
 
@@ -26,34 +25,44 @@ public class ItinerarioView {
         origem = new JList<String>(Cidades);
         destino = new JList<String>(Cidades);
         continuar = new JButton("Continuar");
-        so = new JScrollPane(origem);
-        sd = new JScrollPane(destino);
+        so = new JScrollPane();
+        sd = new JScrollPane();
 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+        so.setViewportView(origem);
+        sd.setViewportView(destino);
 
         //Posicionar na tela
         f.setSize(800, 600);
         origemLabel.setBounds(30, 30, 100, 30);
         destinoLabel.setBounds(30, 200, 100, 30);
-        origem.setBounds(120, 30, 150, 100);
-        destino.setBounds(120, 200, 150, 100);
+        so.setBounds(120, 30, 150, 100);
+        sd.setBounds(120, 200, 150, 100);
         continuar.setBounds(340, 500, 120, 20);
         
-        so.setPreferredSize(new Dimension(120,140));
-        sd.setPreferredSize(new Dimension(120,140));
 
 
         //Adicionar ao Frame
         f.setLayout(null);
-        f.add(origem);
-        f.add(destino);
         f.add(origemLabel);
         f.add(destinoLabel);
         f.add(continuar);
         f.add(so);
         f.add(sd);
+        f.setLocationRelativeTo(null);
         origem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         destino.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         f.setVisible(true);
+        continuar.addActionListener(this);
+    }
+
+    //Clicar no botão Continuar   
+    public void actionPerformed(ActionEvent e) {
+        // Redirecionamento para a tela "Itinerario"
+        SwingUtilities.invokeLater(() -> {
+            new TelaFinalView();
+        });
     }
 }
