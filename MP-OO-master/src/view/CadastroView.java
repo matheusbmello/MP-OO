@@ -10,7 +10,7 @@ public class CadastroView implements ActionListener {
     private static JLabel l;
 
     public CadastroView() {
-        f = new JFrame("Seja bem-vindo à Tripper");
+        f = new JFrame("Realize seu cadastro");
         l = new JLabel("Escolha o tipo de transporte: ");
         ba = new JButton("Avião");
         bo = new JButton("Ônibus");
