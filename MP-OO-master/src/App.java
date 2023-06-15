@@ -1,4 +1,3 @@
-import view.CadastroView;
 import view.TelaInicialView;
 
 public class App {

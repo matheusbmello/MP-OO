@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ListPassagemView implements ActionListener{
+public class ListPassagemView implements ActionListener {
     private static JFrame f;
     private static JLabel texto;
     private static JButton retornar, alterarA, alterarO, excluir;
@@ -28,19 +28,19 @@ public class ListPassagemView implements ActionListener{
         alterarA.setBounds(120, 200, 150, 100);
         alterarO.setBounds(120, 100, 150, 100);
 
-         //Adicionar ao Frame
-         f.setLayout(null);
-         f.add(texto);
-         f.add(alterarA);
-         f.add(alterarO);
-         f.add(retornar);
-         f.add(excluir);
-         f.setLocationRelativeTo(null);
-         f.setVisible(true);
-         excluir.addActionListener(this);
-         retornar.addActionListener(this);
-         alterarA.addActionListener(this);
-         alterarO.addActionListener(this);
+        // Adicionar ao Frame
+        f.setLayout(null);
+        f.add(texto);
+        f.add(alterarA);
+        f.add(alterarO);
+        f.add(retornar);
+        f.add(excluir);
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        excluir.addActionListener(this);
+        retornar.addActionListener(this);
+        alterarA.addActionListener(this);
+        alterarO.addActionListener(this);
 
     }
 
@@ -56,11 +56,11 @@ public class ListPassagemView implements ActionListener{
             SwingUtilities.invokeLater(() -> {
                 new OnibusView();
             });
-        }else if (e.getSource() == excluir) {
-                // Redirecionamento para a tela "CadastroView"
-                SwingUtilities.invokeLater(() -> {
-                    new CadastroView();
-                });
+        } else if (e.getSource() == excluir) {
+            // Redirecionamento para a tela "CadastroView"
+            SwingUtilities.invokeLater(() -> {
+                new CadastroView();
+            });
         } else if (e.getSource() == retornar) {
             // Redirecionamento para a tela "TelaInicialView"
             SwingUtilities.invokeLater(() -> {
@@ -69,4 +69,3 @@ public class ListPassagemView implements ActionListener{
         }
     }
 }
-

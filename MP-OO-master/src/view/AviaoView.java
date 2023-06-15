@@ -3,14 +3,14 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AviaoView implements ActionListener{
-    private static JFrame f;
-    private static JLabel nome, telefone, laAviao;
-    private static JTextField tfNome, tfTelefone;
-    private static JList<String> liAviao;
-    private static JButton continuar;
+public class AviaoView implements ActionListener {
+    private JFrame f;
+    private JLabel nome, telefone, laAviao, mensagemErroNome, mensagemErroTelefone;
+    private JTextField tfNome, tfTelefone;
+    private JList<String> liAviao;
+    private JButton continuar;
 
-    //Mostrar escrito
+    // Mostrar escrito
     public AviaoView() {
         f = new JFrame("Avião");
         nome = new JLabel("Digite seu nome: ");
@@ -18,13 +18,13 @@ public class AviaoView implements ActionListener{
         laAviao = new JLabel("Escolha a classe desejada: ");
         tfNome = new JTextField(50);
         tfTelefone = new JTextField(12);
-        //Cria um vetor com as possibilidades de classes
-        String classes[] = {"Econômica", "Executiva", "Primeira Classe"};
+        // Cria um vetor com as possibilidades de classes
+        String classes[] = { "Econômica", "Executiva", "Primeira Classe" };
         liAviao = new JList<String>(classes);
         continuar = new JButton("Continuar");
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //definindo tamanhos (tem que conferir se estao certos)
+        // Definindo tamanhos
         f.setSize(800, 600);
         nome.setBounds(30, 30, 100, 30);
         telefone.setBounds(30, 65, 120, 30);
@@ -34,7 +34,7 @@ public class AviaoView implements ActionListener{
         liAviao.setBounds(200, 100, 120, 60);
         continuar.setBounds(340, 500, 120, 20);
 
-        //adicionando ao Frame
+        // Adicionando ao Frame
         f.setLayout(null);
         f.setLocationRelativeTo(null);
         f.add(nome);
@@ -44,15 +44,38 @@ public class AviaoView implements ActionListener{
         f.add(tfTelefone);
         f.add(liAviao);
         f.add(continuar);
+
+        mensagemErroNome = new JLabel("");
+        mensagemErroNome.setBounds(30, 150, 300, 30);
+        f.add(mensagemErroNome);
+
+        mensagemErroTelefone = new JLabel("");
+        mensagemErroTelefone.setBounds(30, 185, 300, 30);
+        f.add(mensagemErroTelefone);
+
         f.setVisible(true);
         continuar.addActionListener(this);
     }
 
-    //Clicar no botão Continuar   
+    // Clicar no botão Continuar
     public void actionPerformed(ActionEvent e) {
-        // Redirecionamento para a tela "Itinerario"
-        SwingUtilities.invokeLater(() -> {
-            new ItinerarioView();
-        });
+        String nome = tfNome.getText();
+        String telefone = tfTelefone.getText();
+        String classeSelecionada = liAviao.getSelectedValue();
+
+        boolean nomeValido = control.AviaoControl.checkNome(nome);
+        boolean telefoneValido = control.AviaoControl.checkTel(telefone);
+        boolean classeSelecionadaValida = classeSelecionada != null;
+
+        if (!classeSelecionadaValida) {
+            JOptionPane.showMessageDialog(f, "Selecione uma classe desejada.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (nomeValido && telefoneValido && classeSelecionadaValida) {
+            // Redirecionamento para a tela "Itinerario"
+            SwingUtilities.invokeLater(() -> {
+                new ItinerarioView();
+            });
+        }
     }
 }

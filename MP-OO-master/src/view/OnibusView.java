@@ -3,7 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class OnibusView implements ActionListener{
+public class OnibusView implements ActionListener {
     private static JFrame f;
     private static JLabel nome, telefone, laOnibus;
     private static JTextField tfNome, tfTelefone;
@@ -50,11 +50,25 @@ public class OnibusView implements ActionListener{
         continuar.addActionListener(this);
     }
 
-    //Clicar no botão Continuar   
-    public void actionPerformed(ActionEvent e) {
+   // Clicar no botão Continuar
+   public void actionPerformed(ActionEvent e) {
+    String nome = tfNome.getText();
+    String telefone = tfTelefone.getText();
+    String classeSelecionada = liOnibus.getSelectedValue();
+
+    boolean nomeValido = control.AviaoControl.checkNome(nome);
+    boolean telefoneValido = control.AviaoControl.checkTel(telefone);
+    boolean classeSelecionadaValida = classeSelecionada != null;
+
+    if (!classeSelecionadaValida) {
+        JOptionPane.showMessageDialog(f, "Selecione uma classe desejada.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    if (nomeValido && telefoneValido && classeSelecionadaValida) {
         // Redirecionamento para a tela "Itinerario"
         SwingUtilities.invokeLater(() -> {
             new ItinerarioView();
         });
     }
+}
 }

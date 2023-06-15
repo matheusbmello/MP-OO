@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.event.*;
 
-public class ItinerarioView implements ActionListener{
+public class ItinerarioView implements ActionListener {
 
     private static JFrame f;
     private static JLabel origemLabel;
@@ -16,7 +16,12 @@ public class ItinerarioView implements ActionListener{
 
     public ItinerarioView() {
         // Crie um vetor com as possibilidades de classes
-        String Cidades[] = {"Aracaju - SE", "Belém - PA", "Belo Horizonte - MG", "Boa Vista - RR", "Brasília - DF", "Campo Grande - MS", "Cuiabá - MT", "Curitiba - PR", "Florianópolis - SC", "Fortaleza - CE", "Goiânia - GO", "João Pessoa - PB", "Macapá - AP", "Maceió - AL", "Manaus - AM", "Natal - RN", "Palmas - TO", "Porto Alegre - RS", "Porto Velho - RO", "Recife - PE", "Rio Branco - AC", "Rio de Janeiro - RJ", "Salvador - BA", "São Luís - MA", "São Paulo - SP", "Teresina - PI", "Vitória - ES"};
+        String Cidades[] = { "Aracaju - SE", "Belém - PA", "Belo Horizonte - MG", "Boa Vista - RR", "Brasília - DF",
+                "Campo Grande - MS", "Cuiabá - MT", "Curitiba - PR", "Florianópolis - SC", "Fortaleza - CE",
+                "Goiânia - GO", "João Pessoa - PB", "Macapá - AP", "Maceió - AL", "Manaus - AM", "Natal - RN",
+                "Palmas - TO", "Porto Alegre - RS", "Porto Velho - RO", "Recife - PE", "Rio Branco - AC",
+                "Rio de Janeiro - RJ", "Salvador - BA", "São Luís - MA", "São Paulo - SP", "Teresina - PI",
+                "Vitória - ES" };
 
         // Mostrar as possibilidades e a tela
         f = new JFrame("Escolha de Origem e Destino");
@@ -30,21 +35,18 @@ public class ItinerarioView implements ActionListener{
 
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
         so.setViewportView(origem);
         sd.setViewportView(destino);
 
-        //Posicionar na tela
+        // Posicionar na tela
         f.setSize(800, 600);
         origemLabel.setBounds(30, 30, 100, 30);
         destinoLabel.setBounds(30, 200, 100, 30);
         so.setBounds(120, 30, 150, 100);
         sd.setBounds(120, 200, 150, 100);
         continuar.setBounds(340, 500, 120, 20);
-        
 
-
-        //Adicionar ao Frame
+        // Adicionar ao Frame
         f.setLayout(null);
         f.add(origemLabel);
         f.add(destinoLabel);
@@ -58,7 +60,7 @@ public class ItinerarioView implements ActionListener{
         continuar.addActionListener(this);
     }
 
-    //Clicar no botão Continuar   
+    // Clicar no botão Continuar
     public void actionPerformed(ActionEvent e) {
         // Redirecionamento para a tela "Itinerario"
         SwingUtilities.invokeLater(() -> {

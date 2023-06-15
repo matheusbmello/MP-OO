@@ -15,7 +15,8 @@ public class TelaInicialView implements ActionListener {
     // Mostrar escrito
     public TelaInicialView() {
         f = new JFrame("Seja bem-vindo á Tripper!");
-        texto = new JLabel(" ");
+        texto = new JLabel(
+                "Bem-vindo, por favor, escolha se deseja realizar o seu cadatro, ver a lista dos itinerários ou ver a listagem de sua passagem ");
         cadastrar = new JButton("Cadastrar");
         listPassagem = new JButton("Listagem de passagens");
         listItinerario = new JButton("Listagem de itinerário");
@@ -24,10 +25,10 @@ public class TelaInicialView implements ActionListener {
 
         // Dimensionar na Tela
         f.setSize(800, 600);
-        texto.setBounds(30, 30, 100, 30);
-        cadastrar.setBounds(30, 200, 100, 30);
-        listPassagem.setBounds(120, 30, 150, 100);
-        listItinerario.setBounds(120, 200, 150, 100);
+        texto.setBounds(30, 30, 800, 30);
+        cadastrar.setBounds(10, 200, 180, 30);
+        listPassagem.setBounds(600, 200, 180, 30);
+        listItinerario.setBounds(300, 200, 180, 30);
 
         // Adicionar ao Frame
         f.setLayout(null);
@@ -40,6 +41,7 @@ public class TelaInicialView implements ActionListener {
         cadastrar.addActionListener(this);
         listPassagem.addActionListener(this);
         listItinerario.addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e) {

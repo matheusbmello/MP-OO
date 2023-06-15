@@ -3,7 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class TelaFinalView implements ActionListener{
+public class TelaFinalView implements ActionListener {
     private static JFrame frame;
     private static JLabel mensagemFinal, verifica, nome, telefone, laAviao;
     private static JButton alterar;
@@ -25,12 +25,12 @@ public class TelaFinalView implements ActionListener{
         alterar = new JButton("Alterar");
         excluir = new JButton("Excluir");
 
-            //definição de tamanhos
-            frame.setSize(800, 600);
-            mensagemFinal.setBounds(30, 30, 200, 30);
-            verifica.setBounds(30, 50, 400, 200);
-            alterar.setBounds(260, 300, 100, 30);
-            excluir.setBounds(460, 300, 100, 30);
+        // definição de tamanhos
+        frame.setSize(800, 600);
+        mensagemFinal.setBounds(30, 30, 200, 30);
+        verifica.setBounds(30, 50, 400, 200);
+        alterar.setBounds(260, 300, 100, 30);
+        excluir.setBounds(460, 300, 100, 30);
 
         // Configuração do layout
         frame.setLayout(null);
@@ -43,6 +43,8 @@ public class TelaFinalView implements ActionListener{
         frame.add(laAviao);
         frame.add(alterar);
         frame.add(excluir);
+        frame.setLocationRelativeTo(null);
+
 
         // Exibição da janela
         frame.setVisible(true);
