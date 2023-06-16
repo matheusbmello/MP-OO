@@ -1,5 +1,14 @@
 package control;
 
+import javax.swing.JOptionPane;
+
 public class ItinerarioControl {
-   // Checar se o usuário não escolhe a mesma origem e destino
+   public static boolean checkDestino(String origem, String destino) {
+       if (origem.equals(destino)) {
+           JOptionPane.showMessageDialog(null, "Escolha um destino diferente de sua origem", "Erro",
+                   JOptionPane.ERROR_MESSAGE);
+           return false;
+       }
+       return true;
+   }
 }

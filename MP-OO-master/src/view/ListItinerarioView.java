@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class ListItinerarioView implements ActionListener {
@@ -21,10 +20,10 @@ public class ListItinerarioView implements ActionListener {
 
         // Dimensionar na Tela
         f.setSize(800, 600);
-        texto.setBounds(30, 30, 100, 30);
-        retornar.setBounds(30, 200, 100, 30);
-        excluir.setBounds(120, 30, 150, 100);
-        alterar.setBounds(120, 200, 150, 100);
+        texto.setBounds(30, 30, 800, 30);
+        retornar.setBounds(10, 200, 180, 30);
+        excluir.setBounds(600, 200, 180, 30);
+        alterar.setBounds(300, 200, 180, 30);
 
         // Adicionar ao Frame
         f.setLayout(null);

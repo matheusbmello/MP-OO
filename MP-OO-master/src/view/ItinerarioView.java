@@ -1,7 +1,9 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Dimension;
+
+import control.ItinerarioControl;
+
 import java.awt.event.*;
 
 public class ItinerarioView implements ActionListener {
@@ -60,11 +62,16 @@ public class ItinerarioView implements ActionListener {
         continuar.addActionListener(this);
     }
 
-    // Clicar no botão Continuar
     public void actionPerformed(ActionEvent e) {
-        // Redirecionamento para a tela "Itinerario"
-        SwingUtilities.invokeLater(() -> {
-            new TelaFinalView();
-        });
+        String selectedOrigem = origem.getSelectedValue();
+        String selectedDestino = destino.getSelectedValue();
+
+        if (selectedOrigem != null && selectedDestino != null) {
+            if (ItinerarioControl.checkDestino(selectedOrigem, selectedDestino)) {
+                SwingUtilities.invokeLater(() -> {
+                    new TelaFinalView();
+                });
+            }
+        }
     }
 }

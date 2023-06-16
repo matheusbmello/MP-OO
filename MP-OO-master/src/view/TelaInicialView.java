@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class TelaInicialView implements ActionListener {
@@ -29,7 +28,7 @@ public class TelaInicialView implements ActionListener {
         cadastrar.setBounds(10, 200, 180, 30);
         listPassagem.setBounds(600, 200, 180, 30);
         listItinerario.setBounds(300, 200, 180, 30);
-
+        
         // Adicionar ao Frame
         f.setLayout(null);
         f.add(texto);
