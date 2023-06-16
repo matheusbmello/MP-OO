@@ -21,11 +21,11 @@ public class ListPassagemView implements ActionListener {
 
         // Dimensionar na Tela
         f.setSize(800, 600);
-        texto.setBounds(30, 30, 100, 30);
-        retornar.setBounds(30, 200, 100, 30);
-        excluir.setBounds(120, 30, 150, 100);
-        alterarA.setBounds(120, 200, 150, 100);
-        alterarO.setBounds(120, 100, 150, 100);
+        texto.setBounds(30, 30, 800, 30);
+        retornar.setBounds(135, 200, 200, 30);
+        excluir.setBounds(405, 200, 200, 30);
+        alterarA.setBounds(135, 300, 200, 30);
+        alterarO.setBounds(405, 300, 200, 30);
 
         // Adicionar ao Frame
         f.setLayout(null);

@@ -1,28 +1,26 @@
-package test;
+package utils;
 
 import org.junit.Test;
-
-import control.ItinerarioControl;
-
+import controller.ItinerarioController;
 import static org.junit.Assert.*;
 
-public class ItinerarioTest {
+public class ItinerarioUtils {
 
     //Teste para checagem de origem e destino iguais
     @Test
-    public void testCheckDestino_OrigemIgualDestino_ItinerarioErrado() {
+    public void itinerarioErrado() {
         String origem = "Aracaju - SE";
         String destino = "Aracaju - SE";
 
-        assertFalse(ItinerarioControl.checkDestino(origem, destino));
+        assertFalse(ItinerarioController.checkDestino(origem, destino));
     }
 
     //Teste para checagem de origem e destino diferentes
     @Test
-    public void testCheckDestino_OrigemDiferenteDestino_ItinerarioCerto() {
+    public void itinerarioCerto() {
         String origem = "Aracaju - SE";
         String destino = "São Paulo - SP";
 
-        assertTrue(ItinerarioControl.checkDestino(origem, destino));
+        assertTrue(ItinerarioController.checkDestino(origem, destino));
     }
 }

@@ -56,8 +56,8 @@ public class OnibusView implements ActionListener {
         String telefone = tfTelefone.getText();
         String classeSelecionada = liOnibus.getSelectedValue();
 
-        boolean nomeValido = control.AviaoControl.checkNome(nome);
-        boolean telefoneValido = control.AviaoControl.checkTel(telefone);
+        boolean nomeValido = controller.PassagemController.checkNome(nome);
+        boolean telefoneValido = controller.PassagemController.checkTel(telefone);
         boolean classeSelecionadaValida = classeSelecionada != null;
 
         if (!classeSelecionadaValida) {

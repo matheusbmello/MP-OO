@@ -18,6 +18,7 @@ public class AviaoView implements ActionListener {
         laAviao = new JLabel("Escolha a classe desejada: ");
         tfNome = new JTextField(50);
         tfTelefone = new JTextField(12);
+        
         // Cria um vetor com as possibilidades de classes
         String classes[] = { "Econômica", "Executiva", "Primeira Classe" };
         liAviao = new JList<String>(classes);
@@ -63,8 +64,8 @@ public class AviaoView implements ActionListener {
         String telefone = tfTelefone.getText();
         String classeSelecionada = liAviao.getSelectedValue();
 
-        boolean nomeValido = control.AviaoControl.checkNome(nome);
-        boolean telefoneValido = control.AviaoControl.checkTel(telefone);
+        boolean nomeValido = controller.PassagemController.checkNome(nome);
+        boolean telefoneValido = controller.PassagemController.checkTel(telefone);
         boolean classeSelecionadaValida = classeSelecionada != null;
 
         if (!classeSelecionadaValida) {

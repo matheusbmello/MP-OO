@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import control.ItinerarioControl;
+import controller.ItinerarioController;
 
 import java.awt.event.*;
 
@@ -66,8 +66,9 @@ public class ItinerarioView implements ActionListener {
         String selectedOrigem = origem.getSelectedValue();
         String selectedDestino = destino.getSelectedValue();
 
+        // Checagem de origem e destino
         if (selectedOrigem != null && selectedDestino != null) {
-            if (ItinerarioControl.checkDestino(selectedOrigem, selectedDestino)) {
+            if (ItinerarioController.checkDestino(selectedOrigem, selectedDestino)) {
                 SwingUtilities.invokeLater(() -> {
                     new TelaFinalView();
                 });

@@ -1,22 +1,19 @@
-package test;
+package utils;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import control.AviaoControl;
+import controller.PassagemController;
 
-class AviaoOnibusTest {
+class PassagemUtils {
 
     // Teste para checagem do nome do usuário
     @Test
     void testCheckNome() {
         String valorNomeErrado = "M4th3us";
         String valorNomeCorreto = "Matheus";
-        assertTrue(AviaoControl.checkNome(
-                valorNomeCorreto));
-        assertFalse(AviaoControl.checkNome(
-                valorNomeErrado));
+        assertTrue(PassagemController.checkNome(valorNomeCorreto));
+        assertFalse(PassagemController.checkNome(valorNomeErrado));
     }
 
     // Teste para checagem do telefone do usuário
@@ -24,10 +21,8 @@ class AviaoOnibusTest {
     void testCheckTel() {
         String valorTelErrado = "(61)99999-9999";
         String valorTelCorreto = "61999999999";
-        assertTrue(AviaoControl.checkTel(
-                valorTelCorreto));
-        assertFalse(AviaoControl.checkTel(
-                valorTelErrado));
+        assertTrue(PassagemController.checkTel(valorTelCorreto));
+        assertFalse(PassagemController.checkTel(valorTelErrado));
     }
 
 }
