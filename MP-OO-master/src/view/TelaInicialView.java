@@ -13,9 +13,9 @@ public class TelaInicialView implements ActionListener {
 
     // Mostrar escrito
     public TelaInicialView() {
-        f = new JFrame("Seja bem-vindo á Tripper!");
+        f = new JFrame("Seja bem-vindo à Tripper!");
         texto = new JLabel(
-                "Bem-vindo, por favor, escolha se deseja realizar o seu cadatro, ver a lista dos itinerários ou ver a listagem de sua passagem ");
+                "Bem-vindo, por favor, escolha a opção que deseja: ");
         cadastrar = new JButton("Cadastrar");
         listPassagem = new JButton("Listagem de passagens");
         listItinerario = new JButton("Listagem de itinerário");

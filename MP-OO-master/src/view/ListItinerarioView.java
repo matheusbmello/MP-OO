@@ -10,9 +10,9 @@ public class ListItinerarioView implements ActionListener {
 
     // Mostrar escrito
     public ListItinerarioView() {
-        f = new JFrame("");
+        f = new JFrame("Alteração de itinerário");
         texto = new JLabel("Confira os dados do itinerário!");
-        retornar = new JButton("Retornar a tela inicial");
+        retornar = new JButton("Retornar à tela inicial");
         excluir = new JButton("Excluir");
         alterar = new JButton("Alterar itinerários");
 

@@ -10,7 +10,7 @@ public class ListPassagemView implements ActionListener {
 
     // Mostrar escrito
     public ListPassagemView() {
-        f = new JFrame("");
+        f = new JFrame("Alteração de passagem");
         texto = new JLabel("Confira os dados da passagem!");
         retornar = new JButton("Retornar a tela inicial");
         excluir = new JButton("Excluir passagem");
