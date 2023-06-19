@@ -66,4 +66,8 @@ public class Itinerario {
             this.destino = novoDestino;
         }
     }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 }

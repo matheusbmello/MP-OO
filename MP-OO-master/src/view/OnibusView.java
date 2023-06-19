@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class OnibusView implements ActionListener {
-    private static JFrame f;
-    private static JLabel nome, telefone, laOnibus;
-    private static JTextField tfNome, tfTelefone;
-    private static JList<String> liOnibus;
-    private static JButton continuar;
+    private JFrame f;
+    private JLabel nome, telefone, laOnibus, mensagemErroNome, mensagemErroTelefone;
+    private JTextField tfNome, tfTelefone;
+    private JList<String> liOnibus;
+    private JButton continuar;
 
     // Mostrar escrito
     public OnibusView() {
@@ -25,13 +25,13 @@ public class OnibusView implements ActionListener {
         continuar = new JButton("Continuar");
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // definindo tamanhos (tem que conferir se estao certos)
+        // definindo tamanhos
         f.setSize(800, 600);
-        nome.setBounds(30, 30, 100, 30);
-        telefone.setBounds(30, 65, 120, 30);
+        nome.setBounds(30, 30, 120, 30);
+        telefone.setBounds(30, 65, 150, 30);
         laOnibus.setBounds(30, 100, 170, 30);
-        tfNome.setBounds(130, 30, 200, 30);
-        tfTelefone.setBounds(145, 65, 100, 30);
+        tfNome.setBounds(150, 30, 200, 30);
+        tfTelefone.setBounds(180, 65, 100, 30);
         liOnibus.setBounds(200, 100, 120, 80);
         continuar.setBounds(340, 500, 120, 20);
         continuar.addActionListener(this);
@@ -46,8 +46,14 @@ public class OnibusView implements ActionListener {
         f.add(tfTelefone);
         f.add(liOnibus);
         f.add(continuar);
+        mensagemErroNome = new JLabel("");
+        mensagemErroNome.setBounds(30, 150, 300, 30);
+        f.add(mensagemErroNome);
+
+        mensagemErroTelefone = new JLabel("");
+        mensagemErroTelefone.setBounds(30, 185, 300, 30);
+        f.add(mensagemErroTelefone);
         f.setVisible(true);
-        continuar.addActionListener(this);
     }
 
     // Clicar no botão Continuar
@@ -61,7 +67,7 @@ public class OnibusView implements ActionListener {
         boolean classeSelecionadaValida = classeSelecionada != null;
 
         if (!classeSelecionadaValida) {
-            JOptionPane.showMessageDialog(f, "Selecione uma classe desejada.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(f, "Selecione a classe desejada.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         if (nomeValido && telefoneValido && classeSelecionadaValida) {
