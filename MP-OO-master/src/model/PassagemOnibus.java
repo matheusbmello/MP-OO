@@ -5,7 +5,7 @@ import model.enums.TipoPoltronaEnum;
 public class PassagemOnibus extends Passagem {
     private TipoPoltronaEnum tipoPoltrona;
 
-    public PassagemOnibus(TipoPoltronaEnum tipoPoltrona){
+    public PassagemOnibus(TipoPoltronaEnum tipoPoltrona) {
         this.tipoPoltrona = tipoPoltrona;
     }
 
