@@ -1,36 +1,56 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import model.Dados;
+import model.Passagem;
+import model.PassagemAviao;
+import model.PassagemOnibus;
 
 public class TelaFinalView implements ActionListener {
     private static JFrame frame;
     private static JLabel mensagemFinal, verifica, nome, telefone, laAviao;
-    private static JButton alterar;
-    private static JButton excluir;
+    private static JButton confirmarCadastrto, cancelarCadastro;
 
-    public TelaFinalView() {
+    private Passagem dadosNovaPassagem;
+
+    public TelaFinalView(Passagem dadosNovaPassagem) {
+        this.dadosNovaPassagem = dadosNovaPassagem;
         // Configuração da tela
-        frame = new JFrame("Cadastro finalizado");
+        frame = new JFrame("Confirmar Cadastro");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
         // Criação dos componentes
         mensagemFinal = new JLabel("Viagem cadastrada com sucesso!");
         verifica = new JLabel("Verifique abaixo os dados cadastrados:");
-        nome = new JLabel("Nome: ");
-        telefone = new JLabel("Telefone: ");
-        laAviao = new JLabel("Classe: ");
+        nome = new JLabel("Nome: " + dadosNovaPassagem.getNomePassageiro());
+        telefone = new JLabel("Telefone: " + dadosNovaPassagem.getTelefone());
+        if (dadosNovaPassagem instanceof PassagemAviao) {
+            laAviao = new JLabel("Classe: " + ((PassagemAviao) dadosNovaPassagem).getClasse().toString());
+        } else if (dadosNovaPassagem instanceof PassagemOnibus) {
+            laAviao = new JLabel(
+                    "Tipo de Assento: " + ((PassagemOnibus) dadosNovaPassagem).getTipoPoltrona().toString());
+        }
 
-        alterar = new JButton("Alterar");
-        excluir = new JButton("Excluir");
+        confirmarCadastrto = new JButton("Confirmar");
+        cancelarCadastro = new JButton("Cancelar");
 
         // definição de tamanhos
         frame.setSize(800, 600);
         mensagemFinal.setBounds(30, 30, 200, 30);
         verifica.setBounds(30, 50, 400, 200);
-        alterar.setBounds(260, 300, 100, 30);
-        excluir.setBounds(460, 300, 100, 30);
+        confirmarCadastrto.setBounds(260, 300, 150, 30);
+        cancelarCadastro.setBounds(460, 300, 150, 30);
+        nome.setBounds(30, 100, 200, 30);
+        telefone.setBounds(30, 130, 200, 30);
+        laAviao.setBounds(30, 160, 200, 30);
 
         // Configuração do layout
         frame.setLayout(null);
@@ -41,46 +61,28 @@ public class TelaFinalView implements ActionListener {
         frame.add(nome);
         frame.add(telefone);
         frame.add(laAviao);
-        frame.add(alterar);
-        frame.add(excluir);
         frame.setLocationRelativeTo(null);
-
-
+        frame.add(confirmarCadastrto);
+        frame.add(cancelarCadastro);
         // Exibição da janela
+        confirmarCadastrto.addActionListener(this);
+        cancelarCadastro.addActionListener(this);
+
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new TelaFinalView();
-            }
-        });
-    }
-
-    // Clicar no botão Alterar
-    public static void mainA(String args[]) {
-        TelaFinalView a = new TelaFinalView();
-        alterar.addActionListener(a);
-        // redirecionar para a tela "itinerario"
-    }
-
+    @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == confirmarCadastrto) {
+            Dados.getPassagens().add(dadosNovaPassagem);
+            JOptionPane.showMessageDialog(confirmarCadastrto, "Passagem cadastrada com sucesso!", "Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else if (e.getSource() == cancelarCadastro) {
+            JOptionPane.showMessageDialog(cancelarCadastro, "Cadastro cancelado!", "Cancelamento",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        frame.dispose();
     }
 
-    // Clicar no botão Excluir
-    public static void mainB(String args[]) {
-        TelaFinalView e = new TelaFinalView();
-        excluir.addActionListener(e);
-        // redirecionar para a tela "telaInicial"
-    }
-    /*
-     * public void actionPerformed(ActionEvent e){
-     * 
-     * }
-     */
-
-    // não é possível utilizar o acrionPerformed mais de uma vez na classe
-    // encontrar uma forma de diferenciar as açoes dos botões de alterrar e excluir
 }

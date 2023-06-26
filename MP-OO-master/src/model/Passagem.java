@@ -6,6 +6,13 @@ public abstract class Passagem {
     private Itinerario itinerario;
     private String assento;
 
+    public Passagem(String nomePassageiro, String telefone, Itinerario itinerario, String assento) {
+        this.nomePassageiro = nomePassageiro;
+        this.telefone = telefone;
+        this.itinerario = itinerario;
+        this.assento = assento;
+    }
+
     public Passagem() {
     }
 

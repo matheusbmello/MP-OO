@@ -11,7 +11,7 @@ class PassagemUtils {
     @Test
     void testCheckNome() {
         String valorNomeErrado = "M4th3us";
-        String valorNomeCorreto = "Matheus";
+        String valorNomeCorreto = "Matheus de Mello";
         assertTrue(PassagemController.checkNome(valorNomeCorreto));
         assertFalse(PassagemController.checkNome(valorNomeErrado));
     }

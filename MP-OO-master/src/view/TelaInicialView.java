@@ -1,12 +1,17 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class TelaInicialView implements ActionListener {
     private static JFrame f;
     private static JLabel texto;
-    private static JButton cadastrar, listPassagem, listItinerario;
+    private static JButton cadastrarPassagem, listPassagem, listItinerario, cadastrarItinerario;
 
     // criar uma classe dados e usar como banco de dados desde a tela inicial
     // JTable
@@ -16,50 +21,52 @@ public class TelaInicialView implements ActionListener {
         f = new JFrame("Seja bem-vindo à Tripper!");
         texto = new JLabel(
                 "Bem-vindo, por favor, escolha a opção que deseja: ");
-        cadastrar = new JButton("Cadastrar");
+        cadastrarPassagem = new JButton("Cadastrar Passagem");
+        cadastrarItinerario = new JButton("Cadastrar Itinerário");
+        listItinerario = new JButton("Listagem de itinerários");
         listPassagem = new JButton("Listagem de passagens");
-        listItinerario = new JButton("Listagem de itinerário");
 
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Dimensionar na Tela
         f.setSize(800, 600);
-        texto.setBounds(30, 30, 800, 30);
-        cadastrar.setBounds(10, 200, 180, 30);
-        listPassagem.setBounds(600, 200, 180, 30);
-        listItinerario.setBounds(300, 200, 180, 30);
-        
+        // Adicionar os boões na tela inicial ao centro da tela
+        texto.setBounds(200, 30, 800, 30);
+        cadastrarPassagem.setBounds(100, 200, 200, 30);
+        cadastrarItinerario.setBounds(400, 200, 200, 30);
+        listItinerario.setBounds(100, 300, 200, 30);
+        listPassagem.setBounds(400, 300, 200, 30);
+
         // Adicionar ao Frame
         f.setLayout(null);
         f.add(texto);
-        f.add(cadastrar);
-        f.add(listPassagem);
+        f.add(cadastrarPassagem);
         f.add(listItinerario);
+        f.add(listPassagem);
+        f.add(cadastrarItinerario);
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-        cadastrar.addActionListener(this);
-        listPassagem.addActionListener(this);
+        cadastrarPassagem.addActionListener(this);
         listItinerario.addActionListener(this);
+        listPassagem.addActionListener(this);
+        cadastrarItinerario.addActionListener(this);
 
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cadastrar) {
-            // Redirecionamento para a tela "Cadastro"
+        if (e.getSource() == cadastrarPassagem) {
             SwingUtilities.invokeLater(() -> {
                 new CadastroView();
             });
-
         } else if (e.getSource() == listPassagem) {
-            // Redirecionamento para a tela "ListPassagem"
             SwingUtilities.invokeLater(() -> {
                 new ListPassagemView();
             });
         } else if (e.getSource() == listItinerario) {
-            // Redirecionamento para a tela "ListItinerario"
             SwingUtilities.invokeLater(() -> {
                 new ListItinerarioView();
             });
+        } else if (e.getSource() == cadastrarItinerario) {
+            new CadastroItinerarioView();
         }
     }
 }

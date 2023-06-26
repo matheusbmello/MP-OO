@@ -1,77 +1,60 @@
 package view;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import controller.ItinerarioController;
-
-import java.awt.event.*;
+import model.Dados;
+import model.Passagem;
 
 public class ItinerarioView implements ActionListener {
 
-    private static JFrame f;
-    private static JLabel origemLabel;
-    private static JLabel destinoLabel;
-    private static JList<String> origem;
-    private static JList<String> destino;
-    private static JButton continuar;
-    private static JScrollPane so, sd;
+    private static JFrame f = new JFrame();
+    private static JScrollPane scroll = new JScrollPane();
+    private static JButton btnContinuar = new JButton("Continuar");
 
-    public ItinerarioView() {
-        // Crie um vetor com as possibilidades de classes
-        String Cidades[] = { "Aracaju - SE", "Belém - PA", "Belo Horizonte - MG", "Boa Vista - RR", "Brasília - DF",
-                "Campo Grande - MS", "Cuiabá - MT", "Curitiba - PR", "Florianópolis - SC", "Fortaleza - CE",
-                "Goiânia - GO", "João Pessoa - PB", "Macapá - AP", "Maceió - AL", "Manaus - AM", "Natal - RN",
-                "Palmas - TO", "Porto Alegre - RS", "Porto Velho - RO", "Recife - PE", "Rio Branco - AC",
-                "Rio de Janeiro - RJ", "Salvador - BA", "São Luís - MA", "São Paulo - SP", "Teresina - PI",
-                "Vitória - ES" };
+    private Passagem dadosNovaPassagem;
 
-        // Mostrar as possibilidades e a tela
-        f = new JFrame("Escolha de Origem e Destino");
-        origemLabel = new JLabel("Origem: ");
-        destinoLabel = new JLabel("Destino: ");
-        origem = new JList<String>(Cidades);
-        destino = new JList<String>(Cidades);
-        continuar = new JButton("Continuar");
-        so = new JScrollPane();
-        sd = new JScrollPane();
+    public ItinerarioView(Passagem dadosNovaPassagem) {
+        this.dadosNovaPassagem = dadosNovaPassagem;
 
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setTitle("Escolha o itinerário");
 
-        so.setViewportView(origem);
-        sd.setViewportView(destino);
-
-        // Posicionar na tela
+        // Definindo os tamanhos
         f.setSize(800, 600);
-        origemLabel.setBounds(30, 30, 100, 30);
-        destinoLabel.setBounds(30, 200, 100, 30);
-        so.setBounds(120, 30, 150, 100);
-        sd.setBounds(120, 200, 150, 100);
-        continuar.setBounds(340, 500, 120, 20);
-
-        // Adicionar ao Frame
-        f.setLayout(null);
-        f.add(origemLabel);
-        f.add(destinoLabel);
-        f.add(continuar);
-        f.add(so);
-        f.add(sd);
         f.setLocationRelativeTo(null);
-        origem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        destino.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        f.setLayout(null);
+
+        String[] header = { " ", "Origem", "Destino", "Data" };
+        scroll.setViewportView(new JTable(ItinerarioController.genItinerarioTable(Dados.getVoos(), header, false)));
+
+        scroll.setBounds(30, 30, 700, 400);
+        btnContinuar.setBounds(300, 450, 150, 40);
+
+        btnContinuar.addActionListener(this);
+        f.add(scroll);
+        f.add(btnContinuar);
+
         f.setVisible(true);
-        continuar.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
-        String selectedOrigem = origem.getSelectedValue();
-        String selectedDestino = destino.getSelectedValue();
 
-        // Checagem de origem e destino
-        if (selectedOrigem != null && selectedDestino != null) {
-            if (ItinerarioController.checkDestino(selectedOrigem, selectedDestino)) {
-                SwingUtilities.invokeLater(() -> {
-                    new TelaFinalView();
-                });
+        if (e.getSource() == btnContinuar) {
+            int selectedRow = ((JTable) scroll.getViewport().getView()).getSelectedRow();
+            if (selectedRow > -1) {
+                dadosNovaPassagem.setItinerario(Dados.getVoos().get(selectedRow));
+
+                new TelaFinalView(dadosNovaPassagem);
+                f.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um itinerário", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

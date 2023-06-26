@@ -1,7 +1,15 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class OnibusView implements ActionListener {
     private JFrame f;
@@ -73,7 +81,7 @@ public class OnibusView implements ActionListener {
         if (nomeValido && telefoneValido && classeSelecionadaValida) {
             // Redirecionamento para a tela "Itinerario"
             SwingUtilities.invokeLater(() -> {
-                new ItinerarioView();
+
             });
         }
     }

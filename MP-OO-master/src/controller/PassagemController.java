@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class PassagemController {
 	public static boolean checkNome(String valor) {
 		//Limitar o usuário a escrever apenas letras na sessão "Nome"
-		if (valor.matches("[a-zA-Z]+"))
+		if (valor.matches("[a-zA-Z ]+"))
 			return true;
 		else {
 				JOptionPane.showMessageDialog(null, "Digite um nome válido (apenas letras).", "Erro",

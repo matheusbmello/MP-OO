@@ -1,7 +1,17 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import model.PassagemAviao;
+import model.enums.ClassesPassagemAviaoEnum;
 
 public class AviaoView implements ActionListener {
     private JFrame f;
@@ -18,9 +28,9 @@ public class AviaoView implements ActionListener {
         laAviao = new JLabel("Escolha a classe desejada: ");
         tfNome = new JTextField(50);
         tfTelefone = new JTextField(12);
-        
+
         // Cria um vetor com as possibilidades de classes
-        String classes[] = { "Econômica", "Executiva", "Primeira Classe" };
+        String classes[] = ClassesPassagemAviaoEnum.toArray();
         liAviao = new JList<String>(classes);
         continuar = new JButton("Continuar");
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -73,10 +83,16 @@ public class AviaoView implements ActionListener {
         }
 
         if (nomeValido && telefoneValido && classeSelecionadaValida) {
+            ClassesPassagemAviaoEnum classe = ClassesPassagemAviaoEnum.getEnum(classeSelecionada);
+            PassagemAviao dadosNovaPassagem = new PassagemAviao();
+            dadosNovaPassagem.setNomePassageiro(nome);
+            dadosNovaPassagem.setTelefone(telefone);
+            dadosNovaPassagem.setClasse(classe);
+
             // Redirecionamento para a tela "Itinerario"
-            SwingUtilities.invokeLater(() -> {
-                new ItinerarioView();
-            });
+
+            new ItinerarioView(dadosNovaPassagem);
+            f.dispose();
         }
     }
 }

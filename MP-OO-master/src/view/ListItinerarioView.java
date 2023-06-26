@@ -1,7 +1,11 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class ListItinerarioView implements ActionListener {
     private static JFrame f;
@@ -41,20 +45,12 @@ public class ListItinerarioView implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == alterar) {
             // Redirecionamento para a tela "ItinerarioView"
-            SwingUtilities.invokeLater(() -> {
-                new ItinerarioView();
-            });
-
         } else if (e.getSource() == excluir) {
-            // Redirecionamento para a tela "CadastroView"
-            SwingUtilities.invokeLater(() -> {
-                new CadastroView();
-            });
+
+            new CadastroView();
+
         } else if (e.getSource() == retornar) {
-            // Redirecionamento para a tela "TelaInicialView"
-            SwingUtilities.invokeLater(() -> {
-                new TelaInicialView();
-            });
+
         }
     }
 }
